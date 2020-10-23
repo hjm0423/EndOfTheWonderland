@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     bool swich = true;
 
     Vector3 dragStartPos;
+    Vector3 dragingPos;
+    Vector3 dragReleasePos;
     Touch touch;
     // Start is called before the first frame update
 
@@ -51,9 +53,14 @@ public class PlayerController : MonoBehaviour
 
     void Dragging()
     {
-        Vector3 dragingPos = Camera.main.ScreenToWorldPoint(touch.position);
+        dragStartPos = transform.position;
+        dragStartPos.z = 0f;
+
+        dragingPos = Camera.main.ScreenToWorldPoint(touch.position);
         dragingPos.z = 0f;
+
         lr.positionCount = 2;
+        lr.SetPosition(0, dragStartPos);
         lr.SetPosition(1, dragingPos);
     }
 
@@ -61,7 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         lr.positionCount = 0;
 
-        Vector3 dragReleasePos = Camera.main.ScreenToWorldPoint(touch.position);
+        dragReleasePos = Camera.main.ScreenToWorldPoint(touch.position);
         dragReleasePos.z = 0f;
 
         Vector3 force = dragStartPos - dragReleasePos;
