@@ -10,9 +10,12 @@ public class PlayerController : MonoBehaviour
     public LineRenderer lr;
 
     public Animation anim;
-    public AnimationClip[] animClip;
 
-    bool swich = true;
+    RaycastHit2D raycastHit;
+
+    
+
+    bool isJump = true;
 
     Vector3 dragStartPos;
     Vector3 dragingPos;
@@ -23,7 +26,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1f), 1f, 1 << LayerMask.NameToLayer("Object"));
+        Debug.DrawRay(transform.position, new Vector2(0, -1f));
+
+        if (raycastHit.collider)
+        {
+            Debug.Log(raycastHit.collider.name);
+        }
+
+        if (Input.touchCount > 0 && isJump)
         {
             touch = Input.GetTouch(0);
 
@@ -75,20 +86,11 @@ public class PlayerController : MonoBehaviour
         Vector3 clampedForce = Vector3.ClampMagnitude(force, maxDrag) * power;
 
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
+
+        isJump = false;
     }
     
-    public void CharacterScaleChange()
-    {
-        if (swich)
-        {
-            anim.clip = animClip[0];
-        }
-        else
-        {
-            anim.clip = animClip[1];
-        }
+   
 
-        anim.Play();
-        swich = !swich; 
-    }
+    
 }
