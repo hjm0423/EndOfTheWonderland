@@ -13,27 +13,20 @@ public class PlayerController : MonoBehaviour
 
     RaycastHit2D raycastHit;
 
-    
-
     bool isJump = true;
 
     Vector3 dragStartPos;
     Vector3 dragingPos;
     Vector3 dragReleasePos;
     Touch touch;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
+    private void Start()
+    {
+        StartCoroutine(ChaekGround());
+    }
+
     void Update()
     {
-        raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1f), 1f, 1 << LayerMask.NameToLayer("Object"));
-        Debug.DrawRay(transform.position, new Vector2(0, -1f));
-
-        if (raycastHit.collider)
-        {
-            Debug.Log(raycastHit.collider.name);
-        }
-
         if (Input.touchCount > 0 && isJump)
         {
             touch = Input.GetTouch(0);
@@ -91,6 +84,21 @@ public class PlayerController : MonoBehaviour
     }
     
    
+    IEnumerator ChaekGround()
+    {
+        while (true)
+        {
+            raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1f), 1f, 1 << LayerMask.NameToLayer("Object"));
 
+            if (raycastHit)
+            {
+                Debug.Log(raycastHit.collider.name);
+                isJump = true;
+            }
+
+            yield return new WaitForSeconds(1.5f);
+        }
+        
+    }
     
 }
