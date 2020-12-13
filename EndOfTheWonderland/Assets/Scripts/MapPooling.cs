@@ -8,10 +8,13 @@ public class MapPooling : MonoBehaviour
     public Transform[] poolingObject;
     public Transform[] poolingObject2;
 
+    public Transform[] poolingMapOb;
+
     float playerY;
     Transform playerTr;
 
     int pollingIndex = 1;
+    int pollingIndex2 = 1;
 
     private void Awake()
     {
@@ -31,45 +34,66 @@ public class MapPooling : MonoBehaviour
 
             if (playerY / 10 > pollingIndex + 1)
             {
-                float y = poolingObject[poolingObject.Length - 1].position.y + poolingObject[0].localScale.x;
-                poolingObject[0].position = new Vector3(poolingObject[0].position.x, y, poolingObject[0].position.z);
-                poolingObject2[0].position = new Vector3(poolingObject2[0].position.x, y, poolingObject2[0].position.z);
-
-                Transform _poolingObjTr = poolingObject[0];
-                Transform _poolingObjTr2 = poolingObject2[0];
-
-                for (int i = 0; i < poolingObject.Length -1; i++)
-                {
-                    poolingObject[i] = poolingObject[i + 1];
-                    poolingObject2[i] = poolingObject2[i + 1];
-                }
-
-                poolingObject[poolingObject.Length - 1] = _poolingObjTr;
-                poolingObject2[poolingObject2.Length - 1] = _poolingObjTr2;
+                poolingObject = UpPoolingObject(poolingObject);
+                poolingObject2 = UpPoolingObject(poolingObject2);
 
                 pollingIndex++;
             }
             else if (playerY / 10 < pollingIndex - 1)
             {
-                float y = poolingObject[0].position.y - poolingObject[poolingObject.Length - 1].localScale.x;
-                poolingObject[poolingObject.Length - 1].position = new Vector3(poolingObject[poolingObject.Length - 1].position.x, y, poolingObject[poolingObject.Length - 1].position.z);
-                poolingObject2[poolingObject.Length - 1].position = new Vector3(poolingObject2[poolingObject2.Length - 1].position.x, y, poolingObject2[poolingObject2.Length - 1].position.z);
-
-                Transform _poolingObjTr = poolingObject[poolingObject.Length - 1];
-                Transform _poolingObjTr2 = poolingObject2[poolingObject2.Length - 1];
-
-                for (int i = poolingObject.Length - 1; i > 0; i--)
-                {
-                    poolingObject[i] = poolingObject[i - 1];
-                    poolingObject2[i] = poolingObject2[i - 1];
-                }
-
-                poolingObject[0] = _poolingObjTr;
-                poolingObject2[0] = _poolingObjTr2;
+                poolingObject = DownPoolingObject(poolingObject);
+                poolingObject2 = DownPoolingObject(poolingObject2);
 
                 pollingIndex--;
             }
+
+            if (playerY / 2.5 > pollingIndex2 + 1 )
+            {
+                poolingMapOb = UpPoolingObject(poolingMapOb);
+
+                pollingIndex2++;
+            }
+            else if (playerY / 2.5 < pollingIndex2 - 1 && pollingIndex2 != 0)
+            {
+                poolingMapOb = DownPoolingObject(poolingMapOb);
+
+                pollingIndex2--;
+            }
             yield return null;
         }
+    }
+
+    Transform[] UpPoolingObject(Transform[] poolingObj)
+    {
+        float y = poolingObj[poolingObj.Length - 1].position.y + poolingObj[0].localScale.x;
+        poolingObj[0].position = new Vector3(poolingObj[0].position.x, y, poolingObj[0].position.z);
+
+        Transform _poolingObjTr = poolingObj[0];
+
+        for (int i = 0; i < poolingObj.Length - 1; i++)
+        {
+            poolingObj[i] = poolingObj[i + 1];
+        }
+
+        poolingObj[poolingObj.Length - 1] = _poolingObjTr;
+
+        return poolingObj;
+    }
+
+    Transform[] DownPoolingObject(Transform[] poolingObj)
+    {
+        float y = poolingObj[0].position.y - poolingObj[poolingObj.Length - 1].localScale.x;
+        poolingObj[poolingObj.Length - 1].position = new Vector3(poolingObj[poolingObj.Length - 1].position.x, y, poolingObject[poolingObject.Length - 1].position.z);
+
+        Transform _poolingObjTr = poolingObj[poolingObj.Length - 1];
+
+        for (int i = poolingObj.Length - 1; i > 0; i--)
+        {
+            poolingObj[i] = poolingObj[i - 1];
+        }
+
+        poolingObj[0] = _poolingObjTr;
+
+        return poolingObj;
     }
 }
