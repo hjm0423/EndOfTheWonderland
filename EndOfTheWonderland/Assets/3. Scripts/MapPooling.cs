@@ -46,13 +46,14 @@ public class MapPooling : MonoBehaviour
                 pollingIndex--;
             }
 
-            if (playerY / 2.5 > pollingIndex2 + 1)
+            if (playerY / 2.5 > pollingIndex2 + 4)
             {
+                poolingMapOb[0].position = new Vector3(Random.Range(-7f, 7f), poolingMapOb[0].position.y, poolingMapOb[0].position.z);
                 poolingMapOb = UpPoolingObject(poolingMapOb);
 
                 pollingIndex2++;
             }
-            else if (playerY / 2.5 < pollingIndex2 - 1 && pollingIndex2 != 0)
+            else if (playerY / 2.5 < pollingIndex2 - 1 && pollingIndex2 != 1)
             {
                 poolingMapOb = DownPoolingObject(poolingMapOb);
 

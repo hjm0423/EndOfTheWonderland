@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1f), 1f, 1 << LayerMask.NameToLayer("Object"));
+            raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -1f), 2f, 1 << LayerMask.NameToLayer("Object"));
 
             if (raycastHit)
             {
