@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MapPooling : MonoBehaviour
 {
     public Transform[] poolingObject;
@@ -47,7 +46,7 @@ public class MapPooling : MonoBehaviour
                 pollingIndex--;
             }
 
-            if (playerY / 2.5 > pollingIndex2 + 1 )
+            if (playerY / 2.5 > pollingIndex2 + 1)
             {
                 poolingMapOb = UpPoolingObject(poolingMapOb);
 

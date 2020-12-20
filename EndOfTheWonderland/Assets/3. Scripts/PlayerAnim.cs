@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnim : MonoBehaviour
 {
     // 가만히 있기, 점프, 충돌(벽에)
-    public enum CharacterState {Idle, Jump, Enter};
+    public enum CharacterState { Idle, Jump, Enter };
     Animation anim;
 
     SpriteRenderer spriteRenderer;
@@ -49,7 +49,7 @@ public class PlayerAnim : MonoBehaviour
             }
             yield return new WaitForSeconds(0.3f);
         }
-       
+
     }
 
     IEnumerator CheckCharacter()

@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     Vector3 dragReleasePos;
     Touch touch;
 
+    float touchTime = 0f;
     private void Start()
     {
         StartCoroutine(ChaekGround());
@@ -29,23 +30,31 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.touchCount > 0 && isJump)
         {
+            touchTime += Time.deltaTime;
             touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
+            if (touchTime > 0.25f)
             {
-                DragStart();
-            }
+                if (touch.phase == TouchPhase.Began)
+                {
+                    DragStart();
+                }
 
-            if (touch.phase == TouchPhase.Moved)
-            {
-                Dragging();
-            }
+                if (touch.phase == TouchPhase.Moved)
+                {
+                    Dragging();
+                }
 
-            if (touch.phase == TouchPhase.Ended)
-            {
-                DragRelese();
-                SoundManager.Instance.PlaySound(SoundManager.SoundName.Jump);
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    DragRelese();
+                    SoundManager.Instance.PlaySound(SoundManager.SoundName.Jump);
+                }
             }
+        }
+        else
+        {
+            touchTime = 0f;
         }
     }
     void DragStart()
@@ -82,10 +91,10 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(clampedForce, ForceMode2D.Impulse);
 
         isJump = false;
-        
+
     }
-    
-   
+
+
     IEnumerator ChaekGround()
     {
         while (true)
@@ -100,10 +109,10 @@ public class PlayerController : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
         }
-        
+
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         SoundManager.Instance.PlaySound(SoundManager.SoundName.Collision);
     }
