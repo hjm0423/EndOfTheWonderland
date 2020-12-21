@@ -117,12 +117,9 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         SoundManager.Instance.PlaySound(SoundManager.SoundName.Collision);
-        PlayerAnim.characterState = PlayerAnim.CharacterState.Enter;
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        SoundManager.Instance.PlaySound(SoundManager.SoundName.Collision);
-        PlayerAnim.characterState = PlayerAnim.CharacterState.Idle;
+		if (!isJump)
+		{
+            PlayerAnim.characterState = PlayerAnim.CharacterState.Enter;
+        }
     }
 }

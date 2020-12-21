@@ -40,30 +40,21 @@ public class PlayerAnim : MonoBehaviour
                 case CharacterState.Idle:
                     IdelAnim();
                     break;
-
                 case CharacterState.Jump:
                     JumpAnim();
                     break;
-
                 case CharacterState.Enter:
                     CollisionAnim();
                     break;
-
-
                 default:
                     break;
             }
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
 
     }
 
-    IEnumerator CheckCharacter()
-    {
-
-        yield return new WaitForSeconds(0.2f);
-    }
-
+ 
     void IdelAnim()
     {
         if (idelBoolean)

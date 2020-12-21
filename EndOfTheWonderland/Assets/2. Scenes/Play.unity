@@ -2750,7 +2750,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 6
-  maxDrag: 4
+  maxDrag: 3.5
   rb: {fileID: 1778502668}
   lr: {fileID: 1778502667}
   anim: {fileID: 1778502666}
