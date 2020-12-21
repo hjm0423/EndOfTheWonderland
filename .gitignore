@@ -5,10 +5,10 @@
 EndOfTheWonderland/[Ll]ibrary/
 EndOfTheWonderland/[Tt]emp/
 EndOfTheWonderland/[Oo]bj/
-EndOfTheWonderland/[Bb]uild/
-EndOfTheWonderland/[Bb]uilds/
 EndOfTheWonderland/[Ll]ogs/
 EndOfTheWonderland/[Mm]emoryCaptures/
+#/[Bb]uild/
+#/[Bb]uilds/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -51,9 +51,9 @@ ExportedObj/
 # Unity3D generated file on crash reports
 sysinfo.txt
 
-# Builds
-*.apk
-*.unitypackage
+## Builds
+#*.apk
+#*.unitypackage
 
 # Crashlytics generated file
 crashlytics-build.properties
