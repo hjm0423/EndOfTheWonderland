@@ -14,6 +14,10 @@ public class PlayerAnim : MonoBehaviour
     bool skillSwitch = true;
 
     public Sprite[] IdleSprite;
+
+    public Sprite jumpSprite;
+    public Sprite collisionSprite;
+
     public AnimationClip[] animClip;
 
     public static CharacterState characterState = CharacterState.Idle;
@@ -38,9 +42,11 @@ public class PlayerAnim : MonoBehaviour
                     break;
 
                 case CharacterState.Jump:
+                    JumpAnim();
                     break;
 
                 case CharacterState.Enter:
+                    CollisionAnim();
                     break;
 
 
@@ -70,6 +76,16 @@ public class PlayerAnim : MonoBehaviour
         }
 
         idelBoolean = !idelBoolean;
+    }
+
+    void JumpAnim()
+    {   
+        spriteRenderer.sprite = jumpSprite;
+    }
+
+    void CollisionAnim()
+    {
+        spriteRenderer.sprite = collisionSprite;
     }
 
     public void CharacterScaleChange()

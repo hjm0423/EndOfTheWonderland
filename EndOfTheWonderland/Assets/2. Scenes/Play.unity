@@ -255,7 +255,7 @@ Transform:
   m_GameObject: {fileID: 89841058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.82, y: 17.929874, z: -0.5}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 0.5}
+  m_LocalScale: {x: 3, y: 1.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 886000376}
   m_RootOrder: 5
@@ -2749,8 +2749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0912bd0a72638744f811f0cd389892c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 5
-  maxDrag: 3
+  power: 6
+  maxDrag: 4
   rb: {fileID: 1778502668}
   lr: {fileID: 1778502667}
   anim: {fileID: 1778502666}
@@ -2920,6 +2920,8 @@ MonoBehaviour:
   IdleSprite:
   - {fileID: 21300000, guid: c7a72cc25d77b1b4bb0721a5f7a420e7, type: 3}
   - {fileID: 21300000, guid: 06c4dbb9cf26002478623ccd215db0dc, type: 3}
+  jumpSprite: {fileID: 21300000, guid: 0ece1b3155a86d04c95518e19b3fc245, type: 3}
+  collisionSprite: {fileID: 21300000, guid: a8636ae01f2a80f43b34b7675ea25b8d, type: 3}
   animClip:
   - {fileID: 7400000, guid: 08fa890313c5ce04a9346ee7e890c517, type: 2}
   - {fileID: 7400000, guid: 3d126e63200a75744a10127229183b17, type: 2}

@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
                 {
                     DragRelese();
                     SoundManager.Instance.PlaySound(SoundManager.SoundName.Jump);
+                    PlayerAnim.characterState = PlayerAnim.CharacterState.Jump;
                 }
             }
         }
@@ -105,6 +106,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log(raycastHit.collider.name);
                 isJump = true;
+                PlayerAnim.characterState = PlayerAnim.CharacterState.Idle;
             }
 
             yield return new WaitForSeconds(1.5f);
@@ -115,5 +117,12 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         SoundManager.Instance.PlaySound(SoundManager.SoundName.Collision);
+        PlayerAnim.characterState = PlayerAnim.CharacterState.Enter;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        SoundManager.Instance.PlaySound(SoundManager.SoundName.Collision);
+        PlayerAnim.characterState = PlayerAnim.CharacterState.Idle;
     }
 }
